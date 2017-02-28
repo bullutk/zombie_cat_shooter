@@ -51,9 +51,9 @@ def update_screen(screen, the_hero, game_settings, bullets, enemies):
 	hero_died = groupcollide(enemies, bullets, True, True)
 	if hero_died:
 		os.system("say --r=400 'meow' &")
-
+		# enemy.image = pygame.image.load('images/long_cat_right.png')
 	for bullet in bullets.sprites():
-		bullet.update()
+		bullet.update(the_hero)
 		bullet.draw_bullet()
 	for enemy in enemies:
 		enemy.update_me(the_hero)

@@ -28,6 +28,7 @@ class Hero(Sprite):
 		self.moving_up = False
 		self.moving_down = False
 		self.speed = 1
+		self.facing = 'facing'
 		# self.speed = settings.hero_speed
 
 	def update_me(self):
@@ -35,9 +36,11 @@ class Hero(Sprite):
 		if self.moving_right:
 			self.rect.centerx += 10 
 			self.image = pygame.image.load('images/bark_right.png')
+			self.facing = 'right'
 		elif self.moving_left:
 			self.rect.centerx -= 10 
 			self.image = pygame.image.load('images/bark_left.png')
+			self.facing = 'left'
 		if self.moving_down:
 			self.rect.centery += 10 
 		elif self.moving_up:
