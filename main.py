@@ -36,12 +36,12 @@ def run_game():
 				game_settings.enemy_count = 0
 				enemies.add(Enemy('images/long_cat_left.png', screen, game_settings, 3))
 
-		enemy_hit = groupcollide(enemies, bullets, True, True)
-		# for enemy in enemies:
-		# 	# print enemies
-		# 	enemy.hit(1)
-		# 	if enemy.health <= 0:
-		# 		enemy.remove(enemies)
+		enemy_hit = groupcollide(enemies, bullets, False, True)
+		for enemy in enemy_hit:
+			# print enemies
+			enemy.hit(1)
+			if enemy.health <= 0:
+				enemies.remove(enemy)
 		# if enemy_hit:
 		# 	os.system("say --r=400 'meow' &")
 		check_events(screen, the_hero, game_settings, bullets, enemies)
