@@ -15,25 +15,20 @@ class Bullet(Sprite):
 		self.speed = game_settings.bullet_speed
 		self.x = self.rect.x
 		self.y = self.rect.y
-		self.direction = direction
+		if hero.facing == 'left':
+			self.direction = 'left'
+		if hero.facing == 'right':
+			self.direction = 'right'
 
 	def update(self, hero):
-		# change the x and the y accordingly 
+		# change the x and the y accord6ingly 
 		# based on self.speed
 		# change y in the negative every time it runs
 		if self.direction == 'left':
-			if hero.facing == 'left':
-				self.x -= self.speed
+			self.x -= self.speed
 		if self.direction == 'right':
-			if hero.facing == 'right':
-				self.x += self.speed
+			self.x += self.speed
 
-
-		# elif self.direction == 'up':
-		# 	self.y -= self.speed
-		# elif self.direction == 'down':
-		# 	self.y += self.speed
-		# change the actual cood of the bullet
 		self.rect.y = self.y
 		self.rect.x = self.x
 

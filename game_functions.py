@@ -15,7 +15,6 @@ def check_events(screen, hero, game_settings, bullets, enemies):
 			sys.exit()
 			# the user presses a key
 		elif event.type == pygame.KEYDOWN:
-			# what key was pressed?
 			if event.key == pygame.K_a:
 				new_bullet = Bullet(screen,hero,game_settings, 'left', 'vert')
 				bullets.add(new_bullet)
@@ -24,7 +23,6 @@ def check_events(screen, hero, game_settings, bullets, enemies):
 				new_bullet = Bullet(screen,hero,game_settings, 'down', 'horz')
 				bullets.add(new_bullet)
 				os.system("say --r=750 'bbbbooork' &")
-		# check for keypress
 			elif event.key == pygame.K_RIGHT:
 				hero.moving_right = True
 			elif event.key == pygame.K_LEFT:
@@ -43,15 +41,12 @@ def check_events(screen, hero, game_settings, bullets, enemies):
 			elif event.key == pygame.K_DOWN:
 				hero.moving_down = False
 
-def update_screen(screen, the_hero, game_settings, bullets, enemies):
+def update_screen(screen, the_hero, game_settings, bullets, enemies, background):
+	screen.blit(background.image, background.rect)
 	the_hero.update_me()
 	the_hero.draw_me()
 	# loop thru all bullets in bullet group
 	# call the one we are on bullet
-	hero_died = groupcollide(enemies, bullets, True, True)
-	if hero_died:
-		os.system("say --r=400 'meow' &")
-		# enemy.image = pygame.image.load('images/long_cat_right.png')
 	for bullet in bullets.sprites():
 		bullet.update(the_hero)
 		bullet.draw_bullet()
@@ -61,9 +56,3 @@ def update_screen(screen, the_hero, game_settings, bullets, enemies):
 	# flip the screen, i.e., wipe it 
 	# out so pygaem can redraw
 	pygame.display.flip()
-
-	# print enemies
-
-
-
-

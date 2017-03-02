@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 from settings import Settings
 
+
 # make the hero a sprite, sprite's 
 # are special objects in pygame
 # so we need to include the class

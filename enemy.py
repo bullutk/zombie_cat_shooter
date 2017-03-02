@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 from settings import Settings
 
 class Enemy(Sprite):
-	def __init__(self, image, screen, game_settings):
+	def __init__(self, image, screen, game_settings, health):
 		super(Enemy, self).__init__()
 		self.image = pygame.image.load(image)
 		self.image = pygame.transform.scale(self.image,(70,85))
@@ -14,6 +14,7 @@ class Enemy(Sprite):
 		self.screen = screen
 		self.rect.centery = self.screen_rect.centery
 		self.rect.right = self.screen_rect.right
+		self.health = health
 
 	def update_me(self, hero):
 		dx = self.rect.x - hero.rect.x
@@ -21,14 +22,14 @@ class Enemy(Sprite):
 		dist = math.hypot(dx,dy)
 		dx = dx / dist
 		dy = dy / dist
-# hero rect.x is less than enemy rect.x 
 		self.rect.x -= dx * self.speed
 		self.rect.y -= dy * self.speed
-
 		if self.rect.x < hero.rect.x:
 			self.image = pygame.image.load('images/long_cat_right.png')
 		else:
 			self.image = pygame.image.load('images/long_cat_left.png')
-
 	def draw_me(self):
 		self.screen.blit(self.image, self.rect)
+
+	def hit(self, damage):
+		self.health -= damage
